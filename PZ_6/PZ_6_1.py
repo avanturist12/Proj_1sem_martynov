@@ -23,3 +23,4 @@ if 1 < k <= l <= n:
 	print('Average: ', average)
 else:
 	print('Please read a task and retry later')
+
