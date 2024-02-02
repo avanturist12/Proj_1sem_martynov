@@ -1,27 +1,24 @@
-#Дана строка"апельсины 45 991 100 12 яблоки 13 47 26 0 16",
-#отражающая продажи продукции по дням в кг. Преобразовать информацию из
-#строки в словари, с использованием функции найти  максимальные продажи по
-#каждому виду продукции, результаты вывести на экран.
+# Дана строка"апельсины 45 991 100 12 яблоки 13 47 26 0 16",
+# отражающая продажи продукции по дням в кг. Преобразовать информацию из
+# строки в словари, с использованием функции найти  максимальные продажи по
+# каждому виду продукции, результаты вывести на экран.
 
-data = "апельсины 45 991 100 12 яблоки 13 47 26 0 16"
+def get_max_value(string: str):
+    current_item = str
+    title = string.split()
+    _dict = {}
 
-# Разделение строки на отдельные слова и числа
-items = data.split()
+    for i in title:
+        if not i.isdigit():
+            current_item = i
+            _dict[current_item] = []
+        else:
+            _dict[current_item].append(int(i))
 
-# Создание словаря
-dict_data = {}
-current_item = None
+    for k, v in _dict.items():
+        print(k, max(v), sep=": ")
 
-for item in items:
-    # Если слово является названием продукта
-    if not item.isdigit():
-        current_item = item
-        dict_data[current_item] = []
-    else:
-        # Добавление значения продажи в текущий список продаж продукта
-        dict_data[current_item].append(int(item))
 
-# Нахождение максимальных продаж по каждому продукту и вывод результатов
-for item, sales in dict_data.items():
-    max_sales = max(sales)
-    print(f"Максимальные продажи {item}: {max_sales}")
+if __name__ == "__main__":
+    string = "апельсины  45 991 100 12 яблоки 13 47 26 0 16"
+    get_max_value(string)
