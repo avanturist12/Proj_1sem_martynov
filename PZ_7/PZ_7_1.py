@@ -3,7 +3,7 @@
 while True:
 
     try:
-        integer = input('Input your integer number: ')
+        integer = input('введите своё число: ')
 
         if integer == '/quit':
             break
@@ -11,7 +11,7 @@ while True:
             integer = int(integer)
 
     except:
-        print('You input other symbols, but this is not integer nubmer!')
+        print('введите целое число')
         break
     else:
         if integer > 0:
@@ -20,7 +20,7 @@ while True:
             for i in string_integer:
                 result += int(i)
 
-            print(f'The sum of the digits of this number will be {result}')
+            print(f'введенное число: {result}')
         else:
-            print('This is not integer')
+            print('оно не целое')
             break

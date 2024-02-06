@@ -16,10 +16,10 @@ def get_tell_word(args):
 
 
 while True:
-    words = input('Input your words: ')
+    words = input('введите свои слова: ')
 
     if words == '/quit':
         break
     else:
         tell_word = get_tell_word(words.split())
-        print(f'Length word {tell_word} is {len(tell_word)}')
+        print(f'слово:{tell_word} колличество символов: {len(tell_word)}')

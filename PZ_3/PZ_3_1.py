@@ -1,20 +1,25 @@
 #Дано трехзначное число. Проверить истинность высказывания: "Цифры данного числа образуют возрастную последовательность".
-import re
-def test (arg:str):
-    if re.search(r"\d\d\d",arg):
-        return True
-    else:
-        return False
+number = input("введите число:")
+title = list(number)
 
-while True:
-    s = input("Введите трехзначное число:")
-    if s == "quit":
-        break
-    elif test(s):
-        if int(s[0]) < int(s[1]) and int(s[1]) < int(s[2]):
-            print("Это число возрастающее")
-            break
-        else:
-            print("Ваше число не возростающее")
+status = True
+
+if len(title) == 3:
+    for i in number:
+        try:
+            if int(number[0]) < int(number[1]) and int(number[1]) < int(number[2]):
+                continue
+            else:
+                status = not status
+                break
+        except:
+            status = 3
     else:
-        print("Данная страка не подходит условию")
+        status
+
+    if status == True:
+        print("число возрастающее")
+    elif not status:
+        print("122")
+    else:
+        print("не число")
