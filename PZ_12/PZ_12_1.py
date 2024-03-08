@@ -2,14 +2,25 @@
 # месяц. Необходимо найти количество "2", "3", "4", "5", полученных студентом, и
 # определить итоговую оценку за месяц
 
-otsenki = int(input("какие отценки получал студент?"))
+otsenki = [2, 3, 4, 5, 3, 4, 5, 2, 3, 4, 5]
 
-grades_count = {5: 0, 4: 0, 3: 0, 2: 0}
-for otsenki in otsenki:
-    grades_count[otsenki] += 1
+o_2 = otsenki.count(2)
+o_3 = otsenki.count(3)
+o_4 = otsenki.count(4)
+o_5 = otsenki.count(5)
 
-for otsenki, count in grades_count.items():
-    print(f'Оценка "{otsenki}": {count} шт.')
+print("Количество оценок '2':", o_2)
+print("Количество оценок '3':", o_3)
+print("Количество оценок '4':", o_4)
+print("Количество оценок '5':", o_5)
 
-final_grade = grades_count.get(2, 0) * 2 + grades_count.get(3, 0) * 3 + grades_count.get(4, 0) * 4 + grades_count.get(5, 0) * 5
-print(f'Итоговая оценка за месяц: {final_grade}')
+sr = sum(otsenki) / len(otsenki)
+
+if sr >= 4.5:
+    print("Итоговая оценка за месяц: 5")
+elif sr >= 3.5:
+    print("Итоговая оценка за месяц: 4")
+elif sr >= 2.5:
+    print("Итоговая оценка за месяц: 3")
+else:
+    print("Итоговая оценка за месяц: 2")
