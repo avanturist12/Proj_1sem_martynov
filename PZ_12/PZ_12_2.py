@@ -6,5 +6,10 @@ import string
 
 s = '--msg-template="$FileDir$\{path}:{line}:{column}:{C}:({symbol}){msg}"'
 
-result = ''.join(char for char in s if char in string.punctuation)
-print(result)
+
+def result_():
+    result = ''.join(char for char in s if char in string.punctuation)
+    return result
+
+
+print(result_())
