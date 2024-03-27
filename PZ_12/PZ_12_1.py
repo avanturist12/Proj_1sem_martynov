@@ -2,21 +2,12 @@
 # месяц. Необходимо найти количество "2", "3", "4", "5", полученных студентом, и
 # определить итоговую оценку за месяц
 
-from random import randint
+otsenki = [2, 3, 4, 5, 3, 4, 5, 2, 3, 4, 5]
 
-
-def student(grades):
-    o_2 = grades.count(2)
-    o_3 = grades.count(3)
-    o_4 = grades.count(4)
-    o_5 = grades.count(5)
-    return o_2, o_3, o_4, o_5
-
-
-otsenki = []
-for i in range(10):
-    otsenki.append(randint(2, 5))
-o_2, o_3, o_4, o_5 = student(otsenki)
+o_2 = otsenki.count(2)
+o_3 = otsenki.count(3)
+o_4 = otsenki.count(4)
+o_5 = otsenki.count(5)
 
 print("Количество оценок '2':", o_2)
 print("Количество оценок '3':", o_3)
