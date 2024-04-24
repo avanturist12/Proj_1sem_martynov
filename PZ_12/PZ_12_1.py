@@ -1,10 +1,10 @@
-# Даны текущие оценки студента по дисциплине "Основы програмирования" за
+# Даны текущие оценки студента по дисциплине "Основы программирования" за
 # месяц. Необходимо найти количество "2", "3", "4", "5", полученных студентом, и
 # определить итоговую оценку за месяц
 import random
 
 
-def get_arithmetic_mean(args: list[int]) -> int:
+def get_arithmetic_mean(args: list[int]):
     replaced_list = list(dict.fromkeys(args))
 
     for i in args:

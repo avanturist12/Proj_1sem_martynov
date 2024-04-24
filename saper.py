@@ -1,5 +1,5 @@
  import sqlite3 as sq
- import data_users
+ from data_users import info_users
 
 with sq.connect("saper.db") as con:
     cur = con.cursor()
