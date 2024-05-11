@@ -2,29 +2,32 @@
 # класса унаследуйте классы "Прямоугольник" и "Квадрат". Для класса "Квадрат"
 # переопределите методы, связанные с вычислением площади и периметра.
 
-class figyra:
+class Figyra:
     def __init__(self, shirina, visota):
         self.shirina = shirina
         self.visota = visota
 
 
-class prymoygolnik(figyra):
+def Plohad(self):
+    return self.shirina * self.visota
+
+
+def Perimetr(self):
+    return 2 * (self.shirina + self.visota)
+
+
+class Prymoygolnik(Figyra):
     def __init__(self, shirina, visota):
         super().__init__(shirina, visota)
 
 
-class kvadrat(figyra):
+class Kvadrat(Figyra):
+
     def __init__(self, shirina, visota):
         super().__init__(shirina, visota)
 
-    def plohad(self):
-        return self.shirina * self.visota
 
-    def perimetr(self):
-        return 2 * (self.shirina + self.visota)
-
-
-kva = kvadrat(5, 5)
+kva = Kvadrat(5, 5)
 
 
 def chet(kva):
