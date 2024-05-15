@@ -7,13 +7,11 @@ class Figyra:
         self.shirina = shirina
         self.visota = visota
 
+    def Plohad(self):
+        return self.shirina * self.visota
 
-def Plohad(self):
-    return self.shirina * self.visota
-
-
-def Perimetr(self):
-    return 2 * (self.shirina + self.visota)
+    def Perimetr(self):
+        return 2 * (self.shirina + self.visota)
 
 
 class Prymoygolnik(Figyra):
@@ -31,5 +29,8 @@ kva = Kvadrat(5, 5)
 
 
 def chet(kva):
-    print("Площадь квадрата:", kva.plohad())
-    print("Периметр квадрата", kva.perimetr())
+    print("Площадь квадрата:", kva.Plohad())
+    print("Периметр квадрата:", kva.Perimetr())
+
+
+chet(kva)
