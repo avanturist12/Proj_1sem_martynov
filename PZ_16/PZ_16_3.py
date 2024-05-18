@@ -1,5 +1,7 @@
-# Создать класс "товар" с атрибутами "название","цена" и "колличество". Напишите метод,
-# который выводит информацию о товаре в формате "Название:название, Цена:цена, Колличество: колличество".
+# Для задачи из блока 1 создать две функции, save_dev,и load_dev, которые позволяют
+# сохранять информацию из экземпляров класса (3шт.) в файл и загрушать её обратно.
+# Использовать модуль pickle для сериализации и десериализации объектов Python в
+# бинарном формате.
 
 class tovar:
 
@@ -18,11 +20,13 @@ tovar1 = tovar("Флешка", 1000, 10)
 tovar1.my_tovar()
 
 import pickle
-with open("User.bin", "wb ")as file:
-    pickle.dump(User.file)
+def save_dev():
+    with open("User.bin", "wb ")as file:
+        pickle.dump(save_dev.tovar)
 
-with open("User.bin", "rd")as file:
-    user = pickle.load(file)
+def load_dev():
+    with open("User.bin", "rd")as file:
+        user = pickle.load(tovar)
 
-a = User(10, "Max")
-a.get values()
+a = save_dev(10, "Max")
+a.get. load_dev()

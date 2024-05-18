@@ -19,6 +19,9 @@ class Prymoygolnik(Figyra):
         super().__init__(shirina, visota)
 
 
+pry = Prymoygolnik(2, 6)
+
+
 class Kvadrat(Figyra):
 
     def __init__(self, shirina, visota):
@@ -28,9 +31,11 @@ class Kvadrat(Figyra):
 kva = Kvadrat(5, 5)
 
 
-def chet(kva):
+def chet(kva, pry):
     print("Площадь квадрата:", kva.Plohad())
     print("Периметр квадрата:", kva.Perimetr())
+    print("Площадь прямоугольника:", pry.Plohad())
+    print("Периметр прямоугольника:", pry.Perimetr())
 
 
-chet(kva)
+chet(kva, pry)
