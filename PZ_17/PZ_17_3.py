@@ -1,40 +1,61 @@
 import os
-import random
+import subprocess
 
-# I
-os.chdir('../PZ_11')
+# 1. Перейти в каталог PZ_11 и вывести список всех
+# файлов в этом каталоге.
+os.chdir("../PZ_11")
+files_in_pz11 = [f for f in os.listdir() if os.path.isfile(f)]
+print("Список файлов в PZ_11:", files_in_pz11)
 
-files = [f for f in os.listdir() if os.path.isfile(f)]
-print("Список файлов в каталоге PZ11:", files)
+"""
+2. Перейти в корень проекта, создать папку test и в 
+ней папку test1. Переместить два файла из PZ_6 в test 
+и один файл из PZ_7 в test1. Переименовать файл из 
+PZ_7 в test.txt. Вывести размер файлов в папке test.
+"""
 
-# II
-os.chdir('../PZ_6')
+# Переход в корень проекта
+os.chdir("..")
+# Создание папок test и test1
+os.makedirs("test/test1", exist_ok=True)
 
-os.makedirs('test/test1', exist_ok=True)
+# Перемещение файлов из PZ_6 в test
+pz6_files = os.listdir("PZ_6")[:2]
+for file in pz6_files:
+    os.rename(os.path.join("PZ_6", file), os.path.join("test", file))
 
-os.rename('PZ_6/file.txt', 'test/file.txt')
-os.rename('PZ_6/file2.txt', 'test/file2.txt')
+# Перемещение и переименование файла из PZ_7 в test1
+pz7_file = os.listdir("PZ_7")[0]
+os.rename(os.path.join("PZ_7", pz7_file), "test/test1/test.txt")
 
-os.rename('PZ_7/file3.txt', 'test/test1/test.txt')
-
-test_files = [f for f in os.listdir('test') if os.path.isfile(os.path.join('test', f))]
+# Вывод информации о размере файлов в папке test
+test_files = [f for f in os.listdir("test")
+              if os.path.isfile(os.path.join("test", f))]
 for file in test_files:
-    size = os.path.getsize(os.path.join('test', file))
-    print(f"Размер файла {file}: {size} байт")
+    print(f"Файл: {file}, Размер: "
+          f"{os.path.getsize(os.path.join('test', file))} байт")
 
-# III
-os.chdir('PZ_11')
+# 3. Перейти в папку PZ_11 и найти файл с самым
+# коротким именем, имя вывести в консоль.
+os.chdir("PZ_11")
+shortest_file = min(files_in_pz11, key=len)
+print("Файл с самым коротким именем в PZ_11:",
+      os.path.basename(shortest_file))
 
-shortest_name = min([f for f in os.listdir() if os.path.isfile(f)], key=len)
-print("Файл с самым коротким именем:", os.path.basename(shortest_name))
+"""
+4. Перейти в любую папку, где есть отчет в формате .pdf 
+и «запустить» файл в привязанной к нему программе. 
+(Для примера, предположим, что PDF файл находится в 
+папке PZ_8)
+"""
+os.chdir("../PZ_8")  # Переход в папку PZ_8
+pdf_files = [f for f in os.listdir() if f.endswith(".pdf")]
+if pdf_files:
+    # Используем subprocess для запуска файла
+    subprocess.run(["open", pdf_files[0]])  # Для macOS
+    # subprocess.run(["xdg-open", pdf_files[0]])  # Для Linux
 
-# IV
-os.chdir('../reports')
-
-pdf_file = [f for f in os.listdir() if f.endswith('.pdf')]
-os.startfile(pdf_file[random.randint(0, len(pdf_file)-1)])
-
-# V
+# 5. Удалить файл test.txt.
 os.chdir('../test/test1')
 
 os.remove('test.txt')
