@@ -1,25 +1,13 @@
 # в матрице найти минимальный элемент в предпоследнем столбце
 import numpy as np
 
-def find_minimum_element(matrix):
+# Создаем матрицу
+matrix = np.array([[1, 2, 3, 4],
+                  [5, 6, 7, 8],
+                  [9, 10, 11, 12]])
 
-    if matrix.ndim != 2:
-        raise ValueError("Input matrix must be a 2D array.")
+# Находим минимальный элемент в предпоследнем столбце с помощью lambda
+min_element = min(matrix[:, -2], key=lambda x: x)
 
-    # Extract the second-to-last column
-    second_last_column = matrix[:, -2]
-
-    # Find the minimum element in the column
-    minimum_element = second_last_column.min()
-
-    return minimum_element
-
-# Example usage
-matrix = np.array([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-])
-
-minimum_element = find_minimum_element(matrix)
-print("Minimum element in the second-to-last column:", minimum_element)
+# Вывод результата
+print("Минимальный элемент в предпоследнем столбце:", min_element)

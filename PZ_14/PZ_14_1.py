@@ -4,52 +4,35 @@
 import re
 
 
-def split_ips(ip_file, reserved_file, other_file):
-    """
-    Разделяет IP-адреса из файла по октетам и записывает их в соответствующие файлы.
+def process_ip_addresses(filename):
 
-    Args:
-        ip_file (str): Путь к исходному файлу с IP-адресами.
-        reserved_file (str): Путь к файлу для записи зарезервированных IP-адресов.
-        other_file (str): Путь к файлу для записи остальных IP-адресов.
-    """
+    with open(filename, "r") as file:
+        lines = file.readlines()
 
-    reserved_count = 0
-    other_count = 0
+    non_zero_ips = []
+    zero_ips = []
+    count_non_zero = 0
+    count_zero = 0
 
-    with open(ip_file, "r") as f, open(reserved_file, "w") as reserved_f, open(other_file, "w") as other_f:
-        for line in f:
-            # Проверка пустой строки
-            if not line.strip():
-                continue
-
-            # Извлечение IP-адреса с помощью регулярного выражения
-            match = re.match(r"^(\d{1,3})\.(\d{1,3})\.\d{1,3}\.\d{1,3}$", line)
-            if not match:
-                # Обработка некорректного IP-адреса
-                print(f"Ошибка: Некорректный IP-адрес: {line}")
-                continue
-
-            # Разделение IP-адреса на октеты
-            octets = match.groups()
-
-            # Проверка первых двух октетов
-            if int(octets[0]) != 0 and int(octets[1]) != 0:
-                reserved_f.write(line)
-                reserved_count += 1
+    for line in lines:
+        match = re.search(r"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/", line)
+        if match:
+            ip_address = match.group(1)
+            first_octet, second_octet = map(int, ip_address.split(".")[0:2])
+            if first_octet != 0 and second_octet != 0:
+                non_zero_ips.append(line)
+                count_non_zero += 1
             else:
-                other_f.write(line)
-                other_count += 1
+                zero_ips.append(line)
+                count_zero += 1
 
-            if int(octets[0]) != 0 or int(octets[1]) != 0:
-                other_f.write(line)
-                other_count += 1
-            else:
-                print(f"Ошибка: Некорректный IP-адрес: {line}")
+    with open("non_zero_ips.txt", "w") as f:
+        f.writelines(non_zero_ips)
+    with open("zero_ips.txt", "w") as f:
+        f.writelines(zero_ips)
 
-    print(f"В файле '{reserved_file}' записано {reserved_count} строк.")
-    print(f"В файле '{other_file}' записано {other_count} строк.")
+    print(f"Количество строк с ненулевыми октетами: {count_non_zero}")
+    print(f"Количество строк с нулевыми или пустыми октетами: {count_zero}")
 
 
-# Пример использования
-split_ips("ip_address.txt", "reserved_ips.txt", "other_ips.txt")
+process_ip_addresses("ip_address.txt")
